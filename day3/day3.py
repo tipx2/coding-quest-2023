@@ -32,16 +32,15 @@ for line in lines:
         x, y = divmod(int(move)-1, 3)
         if xturn:
             boardstate[x][y] = "X"
+            if check_winner(boardstate) == "X":
+                xtotal += 1
+                break
         else:
             boardstate[x][y] = "O"
-        
-        if check_winner(boardstate) == "X":
-            xtotal += 1
-            break
-        elif check_winner(boardstate) == "O":
-            ototal += 1
-            break
-
+            if check_winner(boardstate) == "O":
+                ototal += 1
+                break
+    
         xturn = not xturn
 
 drawtotal = len(lines) - (xtotal + ototal)
