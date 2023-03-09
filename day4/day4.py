@@ -22,8 +22,4 @@ for line in lines:
     if checktotal % 256 == int(checksum, 16):
         messages.append([int(seq_num,16), payload])
 
-messages = sorted(messages, key=lambda x: x[0])
-messages = "".join([x[1] for x in messages])
-
-
-print(bytearray.fromhex(messages).decode())
+print(bytearray.fromhex("".join([x[1] for x in sorted(messages, key=lambda x: x[0])])).decode()) # disgusting one liner
